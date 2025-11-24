@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link"
 
 export default function Page() {
   const [nombreInput, setNombreInput] = useState("");
@@ -9,10 +10,18 @@ export default function Page() {
   function manejarCambio(event: React.ChangeEvent<HTMLInputElement>) {
     setNombreInput(event.target.value);
   }
-
+  
   function manejarClick() {
     setNombreMostrado(nombreInput);
   }
+
+  const tickets = [
+  { id: 1, title: "No anda el mail", status: "open", priority: 2 },
+  { id: 2, title: "No arranca la PC", status: "in_progress", priority: 1 },
+  { id: 3, title: "No imprime", status: "open", priority: 3 },
+  { id: 4, title: "Error 404 en sistema", status: "closed", priority: 2 },
+  { id: 5, title: "No puedo acceder a la VPN", status: "open", priority: 1 },
+];
 
   return (
     <main
@@ -70,6 +79,19 @@ export default function Page() {
         {nombreMostrado && (
           <p style={{ fontSize: "16px" }}>Hola {nombreMostrado}</p>
         )}
+
+         <Link href="/practicas/tickets">
+        <button className="border rounded px-3 py-2 hover:bg-gray-100">
+          Buton
+         </button>
+      </Link>
+      
+      <Link
+         href="/practicas/tickets"
+        className="inline-block border rounded px-3 py-2 hover:bg-gray-100"
+>     Link solo
+      </Link>
+
       </div>
     </main>
   );

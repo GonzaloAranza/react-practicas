@@ -1,4 +1,6 @@
-const tickets = [
+/*import {Ticket} from "./types.ts";
+
+const tickets: Ticket[] = [
   { id: 1, title: "No anda el mail", status: "open", priority: 2 },
   { id: 2, title: "No arranca la PC", status: "in_progress", priority: 1 },
   { id: 3, title: "No imprime", status: "open", priority: 3 },
@@ -7,18 +9,19 @@ const tickets = [
 ];
 
 
-function closeTickets(tickets, id) { 
+function closeTickets(tickets : Ticket[], id : number) : Ticket []{ 
 
-    return (tickets.map ((n) => {
-      if (n.id ===id) 
-        return {...n , status:"close"}
-      return {...n}
+    return tickets.map ((t) => {
+      if (t.id ===id) {
+        return {...t , status:"closed"}
+      }
+      return {...t}
      } 
      ) 
-    )
+    
 
     
  }
 
 
- console.log(closeTickets (tickets, 1));
+ console.log(closeTickets (tickets, 1))*/
