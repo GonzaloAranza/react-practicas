@@ -8,6 +8,11 @@ export type Ticket = {
   priority: number;
 };
 
+type CreateTicketData = {
+  title: string;
+  priority: number;
+};
+
 export const mockTickets: Ticket[] = [
   { id: 1, title: "No anda el mail", status: "open", priority: 2 },
   { id: 2, title: "No arranca la PC", status: "in_progress", priority: 1 },
@@ -66,3 +71,20 @@ export function filterTicketsByStatus(
     .filter((t) => t.status === status)
     .sort((a, b) => a.priority - b.priority);
 }
+
+export function createTicket (data : CreateTicketData) : Ticket {
+  
+  const newTicket: Ticket = {
+    id: Date.now(), // Genera un ID único basado en la marca de tiempo actual
+    title: data.title,
+    status: "open",
+    priority: data.priority
+  };
+  return newTicket;
+
+}
+
+export function addTicket(ticket : Ticket , tickets: Ticket[]): Ticket[] {
+
+  return [...tickets, ticket];
+  }; 
