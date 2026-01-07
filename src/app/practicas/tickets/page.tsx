@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link"
-import { mockTickets, type Ticket, type StatusFilter as StatusFilterType , closeTickets , searchTicketsByText, filterTicketsByStatus} from "@/lib/tickets";
 import { useRouter } from "next/navigation";
 import { TicketList } from "./TicketList";
 import { SearchBar } from "./SearchBar"; 
@@ -8,7 +7,7 @@ import { TicketsCounter } from "./TicketsCounter";
 import { StatusFilter } from "./StatusFilter";
 import { useVisibleTickets } from "@/hooks/useVisibleTickets";
 import { useTickets } from "@/hooks/useTickets";
-
+import { CreateTicketForm } from "./CreateTicketForm";
 
 
 export default function TicketsPracticePage() {
@@ -21,7 +20,10 @@ export default function TicketsPracticePage() {
 const{
   tickets,
   closeTicket,
+  addTicket
 } = useTickets();
+
+
 
 
 const {
@@ -47,6 +49,7 @@ const {
 
       <h1 className="text-2xl font-bold">Práctica de Tickets</h1>
        
+      <CreateTicketForm onCreateTicket={addTicket} />
 
       <SearchBar
       value = {searchTicket}

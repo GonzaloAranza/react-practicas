@@ -1,7 +1,7 @@
 
 import { useState } from "react";
-import type { Ticket } from "@/lib/tickets";
-import { mockTickets, closeTickets } from "@/lib/tickets";
+import type { Ticket, CreateTicketData } from "@/lib/tickets";
+import { mockTickets, closeTickets , createTicket}  from "@/lib/tickets";
 
 
 export function useTickets() {
@@ -13,9 +13,15 @@ export function useTickets() {
     setTickets((prev) => closeTickets(prev, id));
   };
 
+  const addTicket = (data: CreateTicketData) => {
+     setTickets((prev) => [...prev, createTicket(data) ]);
+  }
+ 
+
 
 return{
   tickets,
   closeTicket,
-};
+  addTicket,
+  };
 }

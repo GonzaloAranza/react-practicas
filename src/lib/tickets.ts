@@ -4,23 +4,25 @@ export type StatusFilter = "all" | TicketStatus;
 export type Ticket = {
   id: number;
   title: string;
+  description: string;
   status: TicketStatus;
   priority: number;
 };
 
-type CreateTicketData = {
+export type CreateTicketData = {
   title: string;
+  description : string;
   priority: number;
 };
 
 export const mockTickets: Ticket[] = [
-  { id: 1, title: "No anda el mail", status: "open", priority: 2 },
-  { id: 2, title: "No arranca la PC", status: "in_progress", priority: 1 },
-  { id: 3, title: "No imprime", status: "open", priority: 3 },
-  { id: 4, title: "Error 404 en sistema", status: "closed", priority: 2 },
-  { id: 5, title: "No puedo acceder a la VPN", status: "open", priority: 1 },
-  { id: 6, title: "VPN", status: "open", priority: 1 },
-  { id: 7, title: "VPNdsaddsa", status: "open", priority: 1 },
+  { id: 1, title: "No anda el mail", description: "", status: "open", priority: 2 },
+  { id: 2, title: "No arranca la PC", description: "", status: "in_progress", priority: 1 },
+  { id: 3, title: "No imprime", description: "", status: "open", priority: 3 },
+  { id: 4, title: "Error 404 en sistema", description: "", status: "closed", priority: 2 },
+  { id: 5, title: "No puedo acceder a la VPN", description: "", status: "open", priority: 1 },
+  { id: 6, title: "VPN", description: "", status: "open", priority: 1 },
+  { id: 7, title: "VPNdsaddsa", description: "", status: "open", priority: 1 },
 ];
 
 // función para cerrar un ticket SIN mutar el array
@@ -34,6 +36,8 @@ export function searchTicketsByText(
   tickets: Ticket[],
   text: string
 ): Ticket[] {
+  if (text === "") return tickets;
+  
   const lower = text.toLowerCase().trim();
   return tickets.filter((t) => t.title.toLowerCase().includes(lower));
 }
@@ -77,6 +81,7 @@ export function createTicket (data : CreateTicketData) : Ticket {
   const newTicket: Ticket = {
     id: Date.now(), // Genera un ID único basado en la marca de tiempo actual
     title: data.title,
+    description: data.description,
     status: "open",
     priority: data.priority
   };
