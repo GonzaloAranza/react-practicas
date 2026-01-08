@@ -36,8 +36,10 @@ export function searchTicketsByText(
   tickets: Ticket[],
   text: string
 ): Ticket[] {
-  if (text === "") return tickets;
-  
+
+
+if (!text) return tickets;  
+
   const lower = text.toLowerCase().trim();
   return tickets.filter((t) => t.title.toLowerCase().includes(lower));
 }
@@ -93,3 +95,5 @@ export function addTicket(ticket : Ticket , tickets: Ticket[]): Ticket[] {
 
   return [...tickets, ticket];
   }; 
+
+

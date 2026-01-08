@@ -14,11 +14,10 @@ export function useTickets() {
   };
 
   const addTicket = (data: CreateTicketData) => {
-     setTickets((prev) => [...prev, createTicket(data) ]);
+      setTickets((prev) => [...prev, createTicket(data) ]);
   }
  
-
-
+ 
 return{
   tickets,
   closeTicket,

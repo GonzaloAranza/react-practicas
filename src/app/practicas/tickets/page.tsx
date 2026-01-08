@@ -14,14 +14,12 @@ export default function TicketsPracticePage() {
     const router = useRouter();
 
 
-
-
-
-const{
+const {
   tickets,
   closeTicket,
   addTicket
 } = useTickets();
+
 
 
 
@@ -49,7 +47,9 @@ const {
 
       <h1 className="text-2xl font-bold">Práctica de Tickets</h1>
        
-      <CreateTicketForm onCreateTicket={addTicket} />
+      <CreateTicketForm
+       onCreateTicket={addTicket}    
+       />
 
       <SearchBar
       value = {searchTicket}
