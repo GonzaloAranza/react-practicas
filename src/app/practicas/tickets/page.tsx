@@ -17,6 +17,7 @@ export default function TicketsPracticePage() {
 
   const {
     tickets,
+    start,
     closeTicket,
     addTicket,
   } = useTickets();
@@ -68,6 +69,7 @@ export default function TicketsPracticePage() {
       <TicketList
         tickets={visibleTickets}
         onClose={closeTicket}
+        onStart={start}
       />
 
       <TicketsCounter tickets={visibleTickets} />

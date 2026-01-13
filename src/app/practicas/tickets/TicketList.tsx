@@ -4,9 +4,10 @@ import { TicketItem } from "./TicketItem";
 type TicketListProps = {
     tickets: Ticket[];
     onClose: (id: number) => void;
+    onStart: (id: number) => void;
 };
 
-export function TicketList ({tickets, onClose} : TicketListProps){
+export function TicketList ({tickets, onClose, onStart} : TicketListProps){
     if (tickets.length === 0){
         return <p>Lista de tickets vacía</p>
     }
@@ -17,7 +18,9 @@ export function TicketList ({tickets, onClose} : TicketListProps){
                 <TicketItem
                 key={t.id}
                 ticket={t}
-                onClose={onClose}></TicketItem>
+                onClose={onClose}
+                onStart={onStart}></TicketItem>
+                
             ))}
         </ul>
     )

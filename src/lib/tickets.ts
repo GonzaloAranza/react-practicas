@@ -1,4 +1,14 @@
-export type TicketStatus = "open" | "in_progress" | "closed";
+const statuses = ["open", "in_progress", "closed"] as const;
+
+export const TICKET_STATUSES = [
+  "open",
+  "in_progress",
+  "closed",
+] as const;
+
+export type TicketStatus =
+  typeof TICKET_STATUSES[number];
+
 export type StatusFilter = "all" | TicketStatus;
 
 export type Ticket = {
@@ -25,12 +35,39 @@ export const mockTickets: Ticket[] = [
   { id: 7, title: "VPNdsaddsa", description: "", status: "open", priority: 1 },
 ];
 
+
+export function startTicket(
+  tickets: Ticket[],
+  id: number
+): Ticket[] {
+  return tickets.map((t) =>
+    t.id === id && t.status === "open"
+      ? { ...t, status: "in_progress" }
+      : t
+  );
+}
+
+
+
+
+
+function updateTicketStatus(
+  tickets: Ticket[],
+  id: number,
+  status: TicketStatus
+): Ticket[] {
+  return tickets.map((t) =>
+    t.id === id ? { ...t, status } : t
+  );
+}
+
 // función para cerrar un ticket SIN mutar el array
 export function closeTickets(tickets: Ticket[], id: number): Ticket[] {
   return tickets.map((t) =>
     t.id === id ? { ...t, status: "closed" } : { ...t }
   );
 }
+
 
 export function searchTicketsByText(
   tickets: Ticket[],
